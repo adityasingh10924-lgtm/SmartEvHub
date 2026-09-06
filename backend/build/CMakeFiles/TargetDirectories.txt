@@ -1,0 +1,3 @@
+C:/Users/adity/OneDrive/Desktop/Smart-EV-Hub/backend/build/CMakeFiles/evhub.dir
+C:/Users/adity/OneDrive/Desktop/Smart-EV-Hub/backend/build/CMakeFiles/edit_cache.dir
+C:/Users/adity/OneDrive/Desktop/Smart-EV-Hub/backend/build/CMakeFiles/rebuild_cache.dir
