@@ -23,7 +23,7 @@ int main()
 {
     Database database;
 
-    if (!database.connect("../database/evhub.db"))
+    if (!database.connect("database/evhub.db"))
     {
         return 1;
     }
