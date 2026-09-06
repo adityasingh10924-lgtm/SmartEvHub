@@ -36,3 +36,8 @@ compile_error.txt
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Local SQLite database
+*.db
+*.db-wal
+*.db-shm
