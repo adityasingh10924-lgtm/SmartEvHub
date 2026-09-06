@@ -21,7 +21,7 @@ build.ninja
 *.a
 
 # CMake generated files
-*.cmake
+
 
 # IDE files
 .vscode/
