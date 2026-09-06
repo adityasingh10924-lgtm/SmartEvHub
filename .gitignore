@@ -1,0 +1,38 @@
+# ==============================
+# Smart EV Hub - Git Ignore
+# ==============================
+
+# C++ / CMake build files
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build.ninja
+.ninja_deps
+.ninja_log
+
+# Compiled binaries
+*.exe
+*.dll
+*.o
+*.obj
+*.a
+
+# CMake generated files
+*.cmake
+
+# IDE files
+.vscode/
+.vs/
+.idea/
+
+# Temporary / debug files
+*.log
+*.tmp
+compile_error.txt
+
+# OS generated files
+.DS_Store
+Thumbs.db
