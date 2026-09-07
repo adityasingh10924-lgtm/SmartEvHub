@@ -1,13 +1,13 @@
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE Users (
+CREATE TABLE IF NOT EXISTS Users (
     UserID INTEGER PRIMARY KEY AUTOINCREMENT,
     Name TEXT NOT NULL,
     Email TEXT UNIQUE NOT NULL,
     Password TEXT NOT NULL
 );
 
-CREATE TABLE Vehicles (
+CREATE TABLE IF NOT EXISTS Vehicles (
     VehicleID INTEGER PRIMARY KEY AUTOINCREMENT,
     UserID INTEGER NOT NULL,
     VehicleNumber TEXT UNIQUE NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE Vehicles (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
-CREATE TABLE ChargingStations (
+CREATE TABLE IF NOT EXISTS ChargingStations (
     StationID INTEGER PRIMARY KEY AUTOINCREMENT,
     StationName TEXT NOT NULL,
     Location TEXT NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE ChargingStations (
     Status TEXT NOT NULL
 );
 
-CREATE TABLE ChargingRequests (
+CREATE TABLE IF NOT EXISTS ChargingRequests (
     RequestID INTEGER PRIMARY KEY AUTOINCREMENT,
     UserID INTEGER NOT NULL,
     VehicleID INTEGER NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE ChargingRequests (
     FOREIGN KEY (StationID) REFERENCES ChargingStations(StationID)
 );
 
-CREATE TABLE Transactions (
+CREATE TABLE IF NOT EXISTS Transactions (
     TransactionID INTEGER PRIMARY KEY AUTOINCREMENT,
     UserID INTEGER NOT NULL,
     VehicleID INTEGER,
@@ -51,7 +51,7 @@ CREATE TABLE Transactions (
     FOREIGN KEY (StationID) REFERENCES ChargingStations(StationID)
 );
 
-CREATE TABLE ChargingSessions (
+CREATE TABLE IF NOT EXISTS ChargingSessions (
     SessionID INTEGER PRIMARY KEY AUTOINCREMENT,
     RequestID INTEGER NOT NULL,
     UserID INTEGER NOT NULL,
