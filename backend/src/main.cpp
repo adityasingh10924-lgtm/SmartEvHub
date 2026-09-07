@@ -28,6 +28,14 @@ int main()
         return 1;
     }
 
+    if (!database.initializeSchema("../database/schema.sql"))
+    {
+        return 1;
+    }
+
+    string email;
+    string password;
+}
     string email;
     string password;
 

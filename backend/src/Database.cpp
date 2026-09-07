@@ -1,5 +1,7 @@
 #include "Database.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 Database::Database() {
     db = nullptr;
@@ -17,6 +19,11 @@ bool Database::connect(const std::string& databasePath) {
         std::cerr << "Database connection failed: "
                   << sqlite3_errmsg(db) << std::endl;
 
+        if (db != nullptr) {
+            sqlite3_close(db);
+            db = nullptr;
+        }
+
         return false;
     }
 
@@ -25,6 +32,51 @@ bool Database::connect(const std::string& databasePath) {
     return true;
 }
 
+bool Database::initializeSchema(const std::string& schemaPath) {
+
+    std::ifstream schemaFile(schemaPath);
+
+    if (!schemaFile.is_open()) {
+        std::cerr << "Failed to open schema file: "
+                  << schemaPath << std::endl;
+        return false;
+    }
+
+    std::stringstream buffer;
+    buffer << schemaFile.rdbuf();
+
+    std::string schema = buffer.str();
+
+    schemaFile.close();
+
+    char* errorMessage = nullptr;
+
+    int result = sqlite3_exec(
+        db,
+        schema.c_str(),
+        nullptr,
+        nullptr,
+        &errorMessage
+    );
+
+    if (result != SQLITE_OK) {
+
+        std::cerr << "Database schema initialization failed: "
+                  << (errorMessage ? errorMessage : "Unknown error")
+                  << std::endl;
+
+        if (errorMessage != nullptr) {
+            sqlite3_free(errorMessage);
+        }
+
+        return false;
+    }
+
+    std::cout << "Database schema initialized successfully!"
+              << std::endl;
+
+    return true;
+}
 void Database::disconnect() {
 
     if (db != nullptr) {

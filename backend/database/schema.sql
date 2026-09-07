@@ -50,3 +50,19 @@ CREATE TABLE Transactions (
     FOREIGN KEY (VehicleID) REFERENCES Vehicles(VehicleID),
     FOREIGN KEY (StationID) REFERENCES ChargingStations(StationID)
 );
+
+CREATE TABLE ChargingSessions (
+    SessionID INTEGER PRIMARY KEY AUTOINCREMENT,
+    RequestID INTEGER NOT NULL,
+    UserID INTEGER NOT NULL,
+    VehicleID INTEGER NOT NULL,
+    StationID INTEGER NOT NULL,
+    StartTime TEXT DEFAULT CURRENT_TIMESTAMP,
+    EndTime TEXT,
+    EnergyCharged REAL DEFAULT 0,
+    Status TEXT NOT NULL,
+    FOREIGN KEY (RequestID) REFERENCES ChargingRequests(RequestID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (VehicleID) REFERENCES Vehicles(VehicleID),
+    FOREIGN KEY (StationID) REFERENCES ChargingStations(StationID)
+);

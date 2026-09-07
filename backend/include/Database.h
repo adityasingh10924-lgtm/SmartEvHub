@@ -13,8 +13,8 @@ public:
     ~Database();
 
     bool connect(const std::string& databasePath);
+    bool initializeSchema(const std::string& schemaPath);
     void disconnect();
-
     bool registerUser(
         const std::string& name,
         const std::string& email,
@@ -64,9 +64,10 @@ public:
     );
 
     bool completeChargingRequest(
-    int requestID,
-    double energyCharged
-);
+        int requestID,
+        double energyCharged
+    );
+
     void getTransactions(int userID);
 };
 
